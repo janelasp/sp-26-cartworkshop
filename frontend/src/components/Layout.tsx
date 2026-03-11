@@ -1,10 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import { useCartContext } from "../contexts/CartContext";
 import { CartSidebar } from "./CartSidebar/CartSidebar";
 import styles from "./Layout.module.css";
 
 export default function Layout() {
-  const { state, dispatch } = useCart();
+  const { state, dispatch } = useCartContext();
   const itemCount = state.items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (

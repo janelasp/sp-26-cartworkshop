@@ -1,9 +1,9 @@
-import { useCart } from "../../context/CartContext";
+import { Link } from "react-router-dom";
+import { useCartContext } from "../../contexts/CartContext";
 import styles from "./CartSidebar.module.css";
 
 export function CartSidebar() {
-  const { state, dispatch } = useCart();
-
+  const { state, dispatch } = useCartContext();
   if (!state.isOpen) return null;
 
   const total = state.items.reduce(
@@ -57,10 +57,8 @@ export function CartSidebar() {
                       onClick={() =>
                         dispatch({
                           type: "UPDATE_QUANTITY",
-                          payload: {
                             productId: item.productId,
                             quantity: item.quantity - 1,
-                          },
                         })
                       }
                       aria-label={`Decrease quantity of ${item.productName}`}
@@ -73,10 +71,10 @@ export function CartSidebar() {
                       onClick={() =>
                         dispatch({
                           type: "UPDATE_QUANTITY",
-                          payload: {
+                        
                             productId: item.productId,
                             quantity: item.quantity + 1,
-                          },
+                          
                         })
                       }
                       aria-label={`Increase quantity of ${item.productName}`}
@@ -89,7 +87,7 @@ export function CartSidebar() {
                     onClick={() =>
                       dispatch({
                         type: "REMOVE_FROM_CART",
-                        payload: { productId: item.productId },
+                       productId: item.productId,
                       })
                     }
                     aria-label={`Remove ${item.productName} from cart`}
@@ -108,6 +106,15 @@ export function CartSidebar() {
               <span>Total</span>
               <span>${total.toFixed(2)}</span>
             </div>
+            <Link
+            
+              to="/cart"
+              className={styles.checkoutButton}
+              onClick={() => dispatch({ type: "TOGGLE_CART" })}
+              aria-label="Proceed to checkout"
+            >
+              Checkout
+            </Link>
             <button
               className={styles.clearButton}
               onClick={() => dispatch({ type: "CLEAR_CART" })}

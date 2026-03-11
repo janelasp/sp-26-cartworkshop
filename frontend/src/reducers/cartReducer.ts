@@ -5,18 +5,22 @@ export const initialCartState: CartState = {
   isOpen: false,
 };
 
+function assertNever(value: never): never {
+  throw new Error(`Unhandled cart action: ${JSON.stringify(value)}`);
+}
+
 export function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case "ADD_TO_CART": {
       const existing = state.items.find(
-        (item) => item.productId === action.payload.productId
+        (item) => item.productId === action.id
       );
 
       if (existing) {
         return {
           ...state,
           items: state.items.map((item) =>
-            item.productId === action.payload.productId
+            item.productId === action.id
               ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
@@ -28,10 +32,10 @@ export function cartReducer(state: CartState, action: CartAction): CartState {
         items: [
           ...state.items,
           {
-            productId: action.payload.productId,
-            productName: action.payload.productName,
-            price: action.payload.price,
-            imageUrl: action.payload.imageUrl,
+            productId: action.id,
+            productName: action.name,
+            price: action.price,
+            imageUrl: action.imageUrl,
             quantity: 1,
           },
         ],
@@ -42,16 +46,16 @@ export function cartReducer(state: CartState, action: CartAction): CartState {
       return {
         ...state,
         items: state.items.filter(
-          (item) => item.productId !== action.payload.productId
+          (item) => item.productId !== action.productId
         ),
       };
 
     case "UPDATE_QUANTITY": {
-      if (action.payload.quantity < 1) {
+      if (action.quantity < 1) {
         return {
           ...state,
           items: state.items.filter(
-            (item) => item.productId !== action.payload.productId
+            (item) => item.productId !== action.productId
           ),
         };
       }
@@ -59,8 +63,8 @@ export function cartReducer(state: CartState, action: CartAction): CartState {
       return {
         ...state,
         items: state.items.map((item) =>
-          item.productId === action.payload.productId
-            ? { ...item, quantity: action.payload.quantity }
+          item.productId === action.productId
+            ? { ...item, quantity: action.quantity }
             : item
         ),
       };
@@ -78,4 +82,6 @@ export function cartReducer(state: CartState, action: CartAction): CartState {
         isOpen: !state.isOpen,
       };
   }
+
+  return assertNever(action);
 }
