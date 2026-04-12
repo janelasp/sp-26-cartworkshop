@@ -1,0 +1,42 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "🌰 Buckeye Marketplace" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 🌰
+        - heading "Buckeye Marketplace" [level=1] [ref=e8]
+      - generic [ref=e9]:
+        - generic "Authentication" [ref=e10]:
+          - generic "Logged in user" [ref=e11]: qauser_20260412_0053_1
+          - link "Order history" [ref=e12] [cursor=pointer]:
+            - /url: /orders
+            - text: Orders
+          - button "Log out" [ref=e13] [cursor=pointer]: Logout
+        - button "Open shopping cart" [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+  - main [ref=e19]:
+    - generic [ref=e167]:
+      - heading "Order History" [level=1] [ref=e168]
+      - generic [ref=e169]:
+        - generic [ref=e170]:
+          - generic [ref=e171]:
+            - generic [ref=e172]:
+              - generic [ref=e173]: "Order #d6174d8b"
+              - generic [ref=e174]: Placed 4/11/2026, 9:00:12 PM
+            - generic [ref=e175]: QA User
+          - list [ref=e176]:
+            - listitem [ref=e177]: Wireless Headphones × 1
+          - generic [ref=e178]:
+            - generic [ref=e179]: Total
+            - generic [ref=e180]: $149.99
+        - generic [ref=e181]:
+          - generic [ref=e182]:
+            - generic [ref=e183]:
+              - generic [ref=e184]: "Order #3bf850b6"
+              - generic [ref=e185]: Placed 4/11/2026, 8:56:15 PM
+            - generic [ref=e186]: QA User
+          - list [ref=e187]:
+            - listitem [ref=e188]: Wireless Headphones × 1
+          - generic [ref=e189]:
+            - generic [ref=e190]: Total
+            - generic [ref=e191]: $149.99

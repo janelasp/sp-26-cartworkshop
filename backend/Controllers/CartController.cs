@@ -1,16 +1,23 @@
 using backend.Data;
 using backend.DTOs;
 using backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace backend.Controllers;
 
 [ApiController]
 [Route("api/cart")]
+[Authorize]
 public class CartController : ControllerBase
 {
-    private const string CurrentUserId = "default-user";
+    private bool TryGetCurrentUserId(out string userId)
+    {
+        userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? string.Empty;
+        return !string.IsNullOrWhiteSpace(userId);
+    }
 
     private readonly MarketplaceContext _context;
 
@@ -25,10 +32,15 @@ public class CartController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<CartResponse>> GetCart()
     {
+        if (!TryGetCurrentUserId(out var currentUserId))
+        {
+            return Unauthorized();
+        }
+
         var cart = await _context.Carts
             .Include(c => c.Items)
                 .ThenInclude(i => i.Product)
-            .FirstOrDefaultAsync(c => c.UserId == CurrentUserId);
+            .FirstOrDefaultAsync(c => c.UserId == currentUserId);
 
         if (cart is null)
         {
@@ -64,6 +76,11 @@ public class CartController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<CartItemResponse>> AddToCart([FromBody] AddToCartRequest request)
     {
+        if (!TryGetCurrentUserId(out var currentUserId))
+        {
+            return Unauthorized();
+        }
+
         var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == request.ProductId);
         if (product is null)
         {
@@ -73,13 +90,13 @@ public class CartController : ControllerBase
         var cart = await _context.Carts
             .Include(c => c.Items)
                 .ThenInclude(i => i.Product)
-            .FirstOrDefaultAsync(c => c.UserId == CurrentUserId);
+            .FirstOrDefaultAsync(c => c.UserId == currentUserId);
 
         if (cart is null)
         {
             cart = new Cart
             {
-                UserId = CurrentUserId,
+                UserId = currentUserId,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 Items = new List<CartItem>()
@@ -128,6 +145,11 @@ public class CartController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<CartItemResponse>> UpdateCartItem(int cartItemId, [FromBody] UpdateCartItemRequest request)
     {
+        if (!TryGetCurrentUserId(out var currentUserId))
+        {
+            return Unauthorized();
+        }
+
         var cartItem = await _context.CartItems
             .Include(i => i.Cart)
             .Include(i => i.Product)
@@ -138,7 +160,7 @@ public class CartController : ControllerBase
             return NotFound();
         }
 
-        if (cartItem.Cart.UserId != CurrentUserId)
+        if (cartItem.Cart.UserId != currentUserId)
         {
             return NotFound();
         }
@@ -158,6 +180,11 @@ public class CartController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RemoveCartItem(int cartItemId)
     {
+        if (!TryGetCurrentUserId(out var currentUserId))
+        {
+            return Unauthorized();
+        }
+
         var cartItem = await _context.CartItems
             .Include(i => i.Cart)
             .FirstOrDefaultAsync(i => i.Id == cartItemId);
@@ -167,7 +194,7 @@ public class CartController : ControllerBase
             return NotFound();
         }
 
-        if (cartItem.Cart.UserId != CurrentUserId)
+        if (cartItem.Cart.UserId != currentUserId)
         {
             return NotFound();
         }
@@ -186,9 +213,14 @@ public class CartController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ClearCart()
     {
+        if (!TryGetCurrentUserId(out var currentUserId))
+        {
+            return Unauthorized();
+        }
+
         var cart = await _context.Carts
             .Include(c => c.Items)
-            .FirstOrDefaultAsync(c => c.UserId == CurrentUserId);
+            .FirstOrDefaultAsync(c => c.UserId == currentUserId);
 
         if (cart is null)
         {

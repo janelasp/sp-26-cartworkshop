@@ -1,0 +1,22 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "🌰 Buckeye Marketplace" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 🌰
+        - heading "Buckeye Marketplace" [level=1] [ref=e8]
+      - generic [ref=e9]:
+        - generic "Authentication" [ref=e10]:
+          - generic "Logged in user" [ref=e35]: qauser_20260412_0053_1
+          - link "Order history" [ref=e36] [cursor=pointer]:
+            - /url: /orders
+            - text: Orders
+          - button "Log out" [ref=e37] [cursor=pointer]: Logout
+        - button "Open shopping cart" [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+  - main [ref=e18]:
+    - generic [ref=e127]:
+      - heading "Your cart is empty" [level=2] [ref=e177]
+      - paragraph [ref=e178]: Start shopping to add items to your cart.
+      - link "Browse Products" [ref=e179] [cursor=pointer]:
+        - /url: /

@@ -1,0 +1,72 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "🌰 Buckeye Marketplace" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 🌰
+        - heading "Buckeye Marketplace" [level=1] [ref=e8]
+      - generic [ref=e9]:
+        - generic "Authentication" [ref=e10]:
+          - generic "Logged in user" [ref=e35]: qauser_20260412_0053_1
+          - link "Order history" [ref=e36] [cursor=pointer]:
+            - /url: /orders
+            - text: Orders
+          - button "Log out" [ref=e37] [cursor=pointer]: Logout
+        - button "Open shopping cart" [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+          - generic [ref=e104]: "1"
+  - main [ref=e18]:
+    - generic [ref=e127]:
+      - heading "Shopping Cart" [level=1] [ref=e128]
+      - generic [ref=e130]:
+        - img "Wireless Headphones" [ref=e132]
+        - generic [ref=e133]:
+          - heading "Wireless Headphones" [level=3] [ref=e134]
+          - paragraph [ref=e135]: $149.99
+        - generic [ref=e136]:
+          - button "Decrease quantity of Wireless Headphones" [disabled] [ref=e137]: −
+          - generic [ref=e138]: "1"
+          - button "Increase quantity of Wireless Headphones" [ref=e139] [cursor=pointer]: +
+        - generic [ref=e140]: $149.99
+        - button "Remove Wireless Headphones from cart" [ref=e141] [cursor=pointer]: Remove
+      - generic [ref=e142]:
+        - generic [ref=e143]:
+          - generic [ref=e144]: "Total:"
+          - generic [ref=e145]: $149.99
+        - button "Proceed to checkout" [ref=e146] [cursor=pointer]: Proceed to Checkout
+      - generic [ref=e148]:
+        - heading "Checkout" [level=2] [ref=e149]
+        - generic [ref=e150]:
+          - generic [ref=e151]: Full Name *
+          - textbox "Full Name *" [ref=e152]: QA User
+        - generic [ref=e153]:
+          - generic [ref=e154]: Email *
+          - textbox "Email *" [ref=e155]: qa@example.com
+        - generic [ref=e156]:
+          - generic [ref=e157]: Shipping Address *
+          - textbox "Shipping Address *" [ref=e158]: 123 Main St
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]: City *
+            - textbox "City *" [ref=e162]: Columbus
+          - generic [ref=e163]:
+            - generic [ref=e164]: State *
+            - combobox "State *" [ref=e165]:
+              - option "Select a state"
+              - option "Alabama"
+              - option "California"
+              - option "Florida"
+              - option "New York"
+              - option "Ohio" [selected]
+              - option "Texas"
+          - generic [ref=e166]:
+            - generic [ref=e167]: Zip Code *
+            - textbox "Zip Code *" [active] [ref=e168]: "43004"
+        - generic [ref=e169]:
+          - generic [ref=e170]:
+            - generic [ref=e171]: "Items:"
+            - generic [ref=e172]: "1"
+          - generic [ref=e173]:
+            - generic [ref=e174]: "Total:"
+            - generic [ref=e175]: $149.99
+        - button "Place order" [ref=e176] [cursor=pointer]: Place Order

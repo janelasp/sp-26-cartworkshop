@@ -1,0 +1,72 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "🌰 Buckeye Marketplace" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 🌰
+        - heading "Buckeye Marketplace" [level=1] [ref=e8]
+      - generic [ref=e9]:
+        - generic "Authentication" [ref=e10]:
+          - generic "Logged in user" [ref=e11]: qauser_20260412_0053_1
+          - link "Order history" [ref=e12] [cursor=pointer]:
+            - /url: /orders
+            - text: Orders
+          - button "Log out" [ref=e13] [cursor=pointer]: Logout
+        - button "Open shopping cart" [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+          - generic [ref=e86]: "1"
+  - main [ref=e19]:
+    - generic [ref=e109]:
+      - heading "Shopping Cart" [level=1] [ref=e110]
+      - generic [ref=e112]:
+        - img "Wireless Headphones" [ref=e114]
+        - generic [ref=e115]:
+          - heading "Wireless Headphones" [level=3] [ref=e116]
+          - paragraph [ref=e117]: $149.99
+        - generic [ref=e118]:
+          - button "Decrease quantity of Wireless Headphones" [disabled] [ref=e119]: −
+          - generic [ref=e120]: "1"
+          - button "Increase quantity of Wireless Headphones" [ref=e121] [cursor=pointer]: +
+        - generic [ref=e122]: $149.99
+        - button "Remove Wireless Headphones from cart" [ref=e123] [cursor=pointer]: Remove
+      - generic [ref=e124]:
+        - generic [ref=e125]:
+          - generic [ref=e126]: "Total:"
+          - generic [ref=e127]: $149.99
+        - button "Proceed to checkout" [ref=e128] [cursor=pointer]: Proceed to Checkout
+      - generic [ref=e130]:
+        - heading "Checkout" [level=2] [ref=e131]
+        - generic [ref=e132]:
+          - generic [ref=e133]: Full Name *
+          - textbox "Full Name *" [ref=e134]
+        - generic [ref=e135]:
+          - generic [ref=e136]: Email *
+          - textbox "Email *" [ref=e137]
+        - generic [ref=e138]:
+          - generic [ref=e139]: Shipping Address *
+          - textbox "Shipping Address *" [ref=e140]
+        - generic [ref=e141]:
+          - generic [ref=e142]:
+            - generic [ref=e143]: City *
+            - textbox "City *" [ref=e144]
+          - generic [ref=e145]:
+            - generic [ref=e146]: State *
+            - combobox "State *" [ref=e147]:
+              - option "Select a state" [selected]
+              - option "Alabama"
+              - option "California"
+              - option "Florida"
+              - option "New York"
+              - option "Ohio"
+              - option "Texas"
+          - generic [ref=e148]:
+            - generic [ref=e149]: Zip Code *
+            - textbox "Zip Code *" [ref=e150]
+        - generic [ref=e151]:
+          - generic [ref=e152]:
+            - generic [ref=e153]: "Items:"
+            - generic [ref=e154]: "1"
+          - generic [ref=e155]:
+            - generic [ref=e156]: "Total:"
+            - generic [ref=e157]: $149.99
+        - button "Place order" [ref=e158] [cursor=pointer]: Place Order

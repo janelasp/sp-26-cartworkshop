@@ -1,5 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../contexts/CartContext";
+import { useAuthContext } from "../../contexts/AuthContext";
+import { placeOrder } from "../../api/orders";
 import styles from "./CheckoutForm.module.css";
 
 interface FormData {
@@ -31,7 +35,9 @@ const US_STATES = [
 ];
 
 export function CheckoutForm() {
-  const { cartItemCount, cartTotal, dispatch } = useCartContext();
+  const { state: cartState, cartItemCount, cartTotal, dispatch } = useCartContext();
+  const { state: authState, isAuthenticated } = useAuthContext();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
@@ -44,7 +50,6 @@ export function CheckoutForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Set<string>>(new Set());
   const [isProcessing, setIsProcessing] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
 
   const validateField = (name: string, value: string): string | undefined => {
     switch (name) {
@@ -127,38 +132,47 @@ export function CheckoutForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!isAuthenticated) {
+      return;
+    }
+
     if (!validateForm()) {
       return;
     }
 
     setIsProcessing(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const username = authState.me?.username ?? "";
+      const order = await placeOrder({
+        username,
+        shipping: formData,
+        items: cartState.items,
+        total: cartTotal,
+      });
 
-    dispatch({ type: "CLEAR_CART" });
-    setSuccessMessage("Order placed successfully! Thank you for your purchase.");
-    setFormData({
-      fullName: "",
-      email: "",
-      shippingAddress: "",
-      city: "",
-      state: "",
-      zipCode: "",
-    });
-    setTouched(new Set());
-    setErrors({});
-    setIsProcessing(false);
-
-    // Hide success message after 3 seconds
-    setTimeout(() => setSuccessMessage(""), 3000);
+      dispatch({ type: "CLEAR_CART" });
+      setFormData({
+        fullName: "",
+        email: "",
+        shippingAddress: "",
+        city: "",
+        state: "",
+        zipCode: "",
+      });
+      setTouched(new Set());
+      setErrors({});
+      navigate(`/orders/confirmation/${encodeURIComponent(order.id)}`);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
-  if (successMessage) {
+  if (!isAuthenticated) {
     return (
       <div className={styles.successContainer}>
         <div className={styles.successMessage} role="status">
-          ✓ {successMessage}
+          Please <Link to="/login">log in</Link> to place your order.
         </div>
       </div>
     );

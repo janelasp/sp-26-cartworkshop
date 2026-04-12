@@ -1,0 +1,86 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "🌰 Buckeye Marketplace" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 🌰
+        - heading "Buckeye Marketplace" [level=1] [ref=e8]
+      - generic [ref=e9]:
+        - generic "Authentication" [ref=e10]:
+          - generic "Logged in user" [ref=e35]: qauser_20260412_0053_1
+          - link "Order history" [ref=e36] [cursor=pointer]:
+            - /url: /orders
+            - text: Orders
+          - button "Log out" [ref=e37] [cursor=pointer]: Logout
+        - button "Open shopping cart" [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+          - generic [ref=e104]: "1"
+  - main [ref=e18]:
+    - generic [ref=e38]:
+      - complementary [ref=e39]:
+        - heading "Filters" [level=2] [ref=e40]
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - text: Category
+            - combobox "Category" [ref=e43]:
+              - option "All Categories" [selected]
+              - option "Electronics"
+              - option "Books"
+              - option "Clothing"
+          - generic [ref=e44]:
+            - text: Min Price
+            - spinbutton "Min Price" [ref=e45]
+          - generic [ref=e46]:
+            - text: Max Price
+            - spinbutton "Max Price" [ref=e47]
+          - generic [ref=e48]:
+            - button "Apply Filters" [ref=e49] [cursor=pointer]
+            - button "Clear" [ref=e50] [cursor=pointer]
+      - generic [ref=e51]:
+        - heading "Products" [level=2] [ref=e52]
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - link "Wireless Headphones Electronics Wireless Headphones $149.99" [ref=e55] [cursor=pointer]:
+              - /url: /products/1
+              - img "Wireless Headphones" [ref=e57]
+              - generic [ref=e58]:
+                - generic [ref=e59]: Electronics
+                - heading "Wireless Headphones" [level=3] [ref=e60]
+                - paragraph [ref=e61]: $149.99
+            - button "Add Wireless Headphones to cart" [disabled] [ref=e63]: Added!
+          - generic [ref=e64]:
+            - link "Mechanical Keyboard Electronics Mechanical Keyboard $89.99" [ref=e65] [cursor=pointer]:
+              - /url: /products/2
+              - img "Mechanical Keyboard" [ref=e67]
+              - generic [ref=e68]:
+                - generic [ref=e69]: Electronics
+                - heading "Mechanical Keyboard" [level=3] [ref=e70]
+                - paragraph [ref=e71]: $89.99
+            - button "Add Mechanical Keyboard to cart" [ref=e73] [cursor=pointer]: Add to Cart
+          - generic [ref=e74]:
+            - link "Clean Code Books Clean Code $34.99" [ref=e75] [cursor=pointer]:
+              - /url: /products/3
+              - img "Clean Code" [ref=e77]
+              - generic [ref=e78]:
+                - generic [ref=e79]: Books
+                - heading "Clean Code" [level=3] [ref=e80]
+                - paragraph [ref=e81]: $34.99
+            - button "Add Clean Code to cart" [ref=e83] [cursor=pointer]: Add to Cart
+          - generic [ref=e84]:
+            - link "The Pragmatic Programmer Books The Pragmatic Programmer $39.99" [ref=e85] [cursor=pointer]:
+              - /url: /products/4
+              - img "The Pragmatic Programmer" [ref=e87]
+              - generic [ref=e88]:
+                - generic [ref=e89]: Books
+                - heading "The Pragmatic Programmer" [level=3] [ref=e90]
+                - paragraph [ref=e91]: $39.99
+            - button "Add The Pragmatic Programmer to cart" [ref=e93] [cursor=pointer]: Add to Cart
+          - generic [ref=e94]:
+            - link "Classic Hoodie Clothing Classic Hoodie $49.99" [ref=e95] [cursor=pointer]:
+              - /url: /products/5
+              - img "Classic Hoodie" [ref=e97]
+              - generic [ref=e98]:
+                - generic [ref=e99]: Clothing
+                - heading "Classic Hoodie" [level=3] [ref=e100]
+                - paragraph [ref=e101]: $49.99
+            - button "Add Classic Hoodie to cart" [ref=e103] [cursor=pointer]: Add to Cart

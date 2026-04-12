@@ -12,9 +12,16 @@ public class MarketplaceContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Cart> Carts { get; set; }
     public DbSet<CartItem> CartItems { get; set; }
+    public DbSet<AppUser> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<AppUser>()
+            .HasIndex(u => u.Username)
+            .IsUnique();
+
         modelBuilder.Entity<Category>().HasData(
             new Category { Id = 1, Name = "Electronics" },
             new Category { Id = 2, Name = "Books" },

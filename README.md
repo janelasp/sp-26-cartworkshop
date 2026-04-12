@@ -1,3 +1,37 @@
+# Buckeye Marketplace (Cart Workshop)
+
+## Backend JWT setup (M5)
+
+The backend requires `JWT_SIGNING_KEY` and will **refuse to start** if it is missing.
+
+Rules:
+- Set `JWT_SIGNING_KEY` via **environment variable** or **.NET User Secrets** (Development).
+- Do **not** put `JWT_SIGNING_KEY` in `appsettings*.json`.
+- Minimum strength: **32+ bytes** (practically: 32+ random characters).
+
+Development (User Secrets):
+```bash
+cd backend
+dotnet user-secrets init
+dotnet user-secrets set JWT_SIGNING_KEY "<32+ char random secret>"
+```
+
+Any environment (env var):
+```bash
+export JWT_SIGNING_KEY="<32+ char random secret>"
+```
+
+Optional variables:
+- `JWT_ISSUER` (default: `BuckeyeMarketplace`)
+- `JWT_AUDIENCE` (default: `buckeye-marketplace-frontend`)
+
+Dev user seed (Development only):
+- `DEV_SEED_PASSWORD` (required to seed)
+- `DEV_SEED_USERNAME` (default: `demo`)
+- `DEV_SEED_ROLE` (default: `User`)
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
